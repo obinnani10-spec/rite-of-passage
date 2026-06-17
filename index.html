@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rite of Passage — Afrobeat Score Roadmap</title>
+<style>
+  html,body{margin:0;padding:0;background:#08090d;}
+  #root{min-height:100vh;}
+</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+
+
+// ─────────────────────────────────────────────────────────────
+// RITE OF PASSAGE — Afrobeat Score Roadmap
+// An interactive, color-coded sonic journey from cold London
+// dawn to ancestral pride. Color encodes emotional temperature;
+// the left ribbon encodes tempo (BPM) as physical height.
+// ─────────────────────────────────────────────────────────────
+
+const ACTS = {
+  I: { label: "ACT I — Shock · Curiosity · Laughter", tint: "#5B7FB0" },
+  II: { label: "ACT II — Struggle · Homesickness · Discovery", tint: "#C98A3C" },
+  III: { label: "ACT III — Identity · Pride · Rebirth", tint: "#D6452F" },
+};
+
+// temperature: 0 = coldest (indigo) → 1 = hottest (ember/gold)
+const CUES = [
+  {
+    n: 1, act: "I", title: "The Platform", temp: 0.08, bpm: 88, dur: "1:30",
+    moment: "London platform at dawn. Akah arrives — uncertain, curious.",
+    feel: "Land the audience in a foreign country. Cold air, suitcase, wonder laced with dread.",
+    palette: ["#1B2A4A", "#33486E"],
+    instruments: ["Sparse talking drum", "Ambient train hall reverb", "Low synth pad", "Soft shekere"],
+    direction: "Leave huge silences. The talking drum should sound like a single voice calling across an empty hall — never a groove yet. Pitch ambience down so the station feels vast and indifferent.",
+    sample: "Tony Allen — 'Secret Agent' (intro restraint)",
+    culture: "The talking drum (dùndún) literally 'speaks' Yoruba tonal phrases. Here it asks a question with no answer yet — diaspora as an open sentence.",
+  },
+  {
+    n: 2, act: "I", title: "“Leave Now”", temp: 0.22, bpm: 95, dur: "2:00",
+    moment: "The divine calling to leave Nigeria.",
+    feel: "First major emotional peak. Fear and faith colliding.",
+    palette: ["#2A2152", "#5B3C8C"],
+    instruments: ["Deep bass drone", "Solo flute phrases", "Afrobeat kick (gradual)", "Rising strings"],
+    direction: "Begin in free time — no click, breath-led. Let the flute wander like a prayer, then let the kick arrive like a heartbeat returning. Lock to 95 BPM only once faith wins over fear.",
+    sample: "Seun Kuti — 'Black Times' (slow ignition)",
+    culture: "The oja/flute carries spiritual summons in Igbo ceremony. Free-time-into-pulse mirrors a soul deciding.",
+  },
+  {
+    n: 3, act: "I", title: "Soft Landing", temp: 0.34, bpm: 92, dur: "1:45",
+    moment: "Uncle houses the family for 8 months. Egusi, community, relief.",
+    feel: "Home found abroad. Warmth without naivety.",
+    palette: ["#6B5B3E", "#A8843E"],
+    instruments: ["Warm Rhodes", "Highlife guitar lines", "Gentle congas", "Female vocal hums"],
+    direction: "Highlife, not Afrobeat — looser, sweeter, palm-wine swing. Rhodes sits low and intimate, like a kitchen at night. Wordless female hums = the women holding the household together.",
+    sample: "Ebo Taylor — 'Love and Death'",
+    culture: "Highlife is the sound of West African gathering and hospitality. Egusi on screen, highlife in the air — both say: you are fed here.",
+  },
+  {
+    n: 4, act: "I", title: "Jobs Lost / Dreams Shattered", temp: 0.0, bpm: 70, dur: "1:30",
+    moment: "Opportunities disappear. Emotional winter.",
+    feel: "The lowest valley of the whole show.",
+    palette: ["#11161F", "#28323F"],
+    instruments: ["Minimal drums", "Reverse piano textures", "Heartbeat percussion"],
+    direction: "Strip everything. One low heartbeat thud, irregular, like exhaustion. Reverse piano blooms backward so nothing resolves. No bass — absence is the point.",
+    sample: "Nils Frahm — 'Says' (the cold version of intimacy)",
+    culture: "Coldest color of the map. The Afrobeat engine deliberately goes silent — the body without its rhythm, the migrant without footing.",
+  },
+  {
+    n: 5, act: "I", title: "Bathroom Light Switch", temp: 0.55, bpm: 124, dur: "0:15",
+    moment: "The British pull-cord revelation. Physical comedy.",
+    feel: "Immediate laughter support.",
+    palette: ["#C9A227", "#E7C84B"],
+    instruments: ["Comic Afrobeat sting", "Punchy brass hit", "Quick percussion flourish"],
+    direction: "One sharp brass stab on the pull, then a cheeky descending horn slide. In and out in under two seconds of actual music — never milk the joke.",
+    sample: "Fela Kuti — horn stabs from 'Zombie'",
+    culture: "Comedy is survival in migrant storytelling. The brass laughs *with* Akah, not at him.",
+  },
+  {
+    n: 6, act: "I", title: "Monthly Bills", temp: 0.62, bpm: 110, dur: "0:15",
+    moment: "“Then you get up again and run.”",
+    feel: "Nigerian hustle mode activated.",
+    palette: ["#C46A1E", "#E89A33"],
+    instruments: ["Fast Afrobeat groove", "Bright horns", "Energetic guitar"],
+    direction: "Drop straight into a full-tilt groove mid-phrase, as if the music was already running before we cut to it. Tight, sweaty, relentless. End on a hard stop.",
+    sample: "Antibalas — 'Dirty Money'",
+    culture: "Hustle as rhythm. The groove never asks permission — that's the point of the line.",
+  },
+  {
+    n: 7, act: "I", title: "Weather / Tea Montage", temp: 0.5, bpm: 104, dur: "0:45",
+    moment: "Rain, sun, cloud, snow — all in one afternoon.",
+    feel: "The chaos of British weather.",
+    palette: ["#4E8C8A", "#7FB7A6"],
+    instruments: ["Playful log drums", "Quick key changes", "Unexpected rhythmic shifts"],
+    direction: "Modulate up a step every time the weather flips. Log drums trade fours with themselves. Let one beat 'trip' and recover, like slipping on wet pavement.",
+    sample: "Kokoroko — 'Abusey Junction' (playful interplay)",
+    culture: "Log drum wit answers a foreign sky. The diaspora ear finding humor in the unfamiliar.",
+  },
+  {
+    n: 8, act: "II", title: "The Train (Final Boss)", temp: 0.05, bpm: 100, dur: "1:15",
+    moment: "The commuter train. No eye contact.",
+    feel: "Emotional isolation among bodies.",
+    palette: ["#1A2230", "#3A4656"],
+    instruments: ["Mechanical percussion", "Muted bassline", "Cold electronic textures"],
+    direction: "Quantize everything dead-on grid — inhuman precision. Bass muted with palm so it never sings. Pads = fluorescent light. Surrounded by people, scored like a void.",
+    sample: "Burna Boy — 'Dangote' (but drained of warmth)",
+    culture: "The 'final boss' is loneliness. Afrobeat's communal heartbeat is replaced by a machine pulse — community withheld.",
+  },
+  {
+    n: 9, act: "II", title: "Dogs, Cats & Foxes", temp: 0.58, bpm: 116, dur: "1:00",
+    moment: "Cartoon urban-animal chaos.",
+    feel: "Physical comedy, stop-start.",
+    palette: ["#9C7B2E", "#C7A23E"],
+    instruments: ["Playful percussion", "Woodblock accents", "Sudden stop-start hits"],
+    direction: "Mickey-mouse the action — woodblock per footstep, full ensemble freeze on each surprise. Silence is a punchline; use it three times, each longer.",
+    sample: "Mulatu Astatke — 'Yègellé Tezeta' (sly groove)",
+    culture: "Trickster energy — the fox as urban Anansi. Comedy holding back the homesickness underneath.",
+  },
+  {
+    n: 10, act: "II", title: "Mosquito Revelation", temp: 0.3, bpm: 72, dur: "2:30",
+    moment: "His daughter won't have to run from mosquitoes.",
+    feel: "One of the emotional centers of the show.",
+    palette: ["#3E5C6B", "#7C9BA0"],
+    instruments: ["Solo piano", "Udu drum", "Soft strings", "Gentle choir pad"],
+    direction: "Let the piano breathe between phrases. Udu = the heartbeat of a sleeping child. Choir enters almost subliminally — felt before heard. No climax; tenderness, not triumph.",
+    sample: "Cobhams Asuquo — 'Ordinary People' tenderness",
+    culture: "The udu (clay pot drum) is earth and ancestry made audible. A father's sacrifice scored in clay and breath.",
+  },
+  {
+    n: 11, act: "II", title: "Bank Account Nightmare", temp: 0.48, bpm: 96, dur: "1:30",
+    moment: "Hold music. Paperwork. Despair-comedy.",
+    feel: "Recurring comic frustration theme.",
+    palette: ["#7E8A3C", "#A9B452"],
+    instruments: ["Repetitive hold-music motif", "Afro-jazz piano", "Comedic rhythmic interruptions"],
+    direction: "Write a deliberately bland hold-music loop, then let Afro-jazz piano keep interrupting and getting cut off by the loop. The musical joke = bureaucracy winning every time.",
+    sample: "Roy Ayers x Fela — 'Africa Center of the World'",
+    culture: "A leitmotif of friction — the system as comic antagonist. Recurs so the audience groans on recognition.",
+  },
+  {
+    n: 12, act: "II", title: "Tourist Eye", temp: 0.52, bpm: 102, dur: "1:30",
+    moment: "Oxford Street wonder.",
+    feel: "Seeing London through Akah's eyes.",
+    palette: ["#5A7E55", "#8FB36E"],
+    instruments: ["Expansive strings", "Guitar harmonics", "Afrobeat groove emerging"],
+    direction: "Strings open wide and cinematic; let the Afrobeat groove sneak in underneath like roots growing under pavement. By the end, the city moves to an African pulse.",
+    sample: "Kokoroko — 'Carry Me Home'",
+    culture: "The turning point: London stops being foreign and starts being claimable. Afrobeat colonizes the score — gently, joyfully.",
+  },
+  {
+    n: 13, act: "III", title: "“They Called Me Third World”", temp: 0.85, bpm: 108, dur: "3:00",
+    moment: "Identity reclamation.",
+    feel: "Victorious, powerful, unapologetically African.",
+    palette: ["#B5341F", "#E8632B"],
+    instruments: ["Full Afrobeat ensemble", "Heavy bass", "Horn section", "Choir responses"],
+    direction: "Everything the score has withheld arrives at once. Call-and-response between lead and choir — the audience should want to answer back. Build in three waves, each hotter, no release until the last bar.",
+    sample: "Fela Kuti — 'Water No Get Enemy' (full ensemble power)",
+    culture: "Call-and-response is the engine of African music and of communal defiance. 'Third World' reclaimed as a crown.",
+  },
+  {
+    n: 14, act: "III", title: "The Isiagu", temp: 0.95, bpm: 100, dur: "2:00",
+    moment: "He puts on the Isiagu. Spiritual climax.",
+    feel: "Ancestral pride enters the room.",
+    palette: ["#7E1D12", "#D4452A", "#E8A23A"],
+    instruments: ["Oja flute", "Igbo drum ensemble", "Modern Afrobeat bass"],
+    direction: "Open with solo oja — raw, ceremonial, un-clicked. The Igbo drum ensemble answers, then modern bass enters underneath, joining ancestor to present. The room should feel populated by the dead and the living together.",
+    sample: "Traditional Igbo Ikoro/Oja ensemble + modern low end",
+    culture: "The Isiagu (lion-head garment) marks Igbo titled men. The oja announces nobility. This is the map's hottest point — heritage worn, not described.",
+  },
+  {
+    n: 15, act: "III", title: "The Rite of Passage", temp: 0.66, bpm: 84, dur: "2:45",
+    moment: "“You have remembered who you are.”",
+    feel: "Emotional resolution.",
+    palette: ["#B86A2E", "#E0A75A"],
+    instruments: ["Piano", "Strings", "Warm choir", "Slow Afrobeat pulse"],
+    direction: "Bring the heat down to a glow. The Afrobeat pulse is now gentle and certain — a heartbeat at rest. Choir warm and major. Resolution, not victory lap.",
+    sample: "Sault — 'Little Boy' (warm communal resolution)",
+    culture: "The title moment. Rhythm returns soft and sure — identity no longer fought for but held.",
+  },
+  {
+    n: 16, act: "III", title: "Final Train", temp: 0.6, bpm: 96, dur: "2:00",
+    moment: "Last train home. Coat over Isiagu, suitcase in hand.",
+    feel: "Arrived in confusion, leaves in confidence.",
+    palette: ["#9A5A33", "#D98F4A"],
+    instruments: ["Opening theme reprise", "Larger orchestration", "Full Afrobeat section", "Train ambience returns"],
+    direction: "Reprise Cue 1's talking-drum phrase — but now answered by the full ensemble and warmed strings. Same train ambience, opposite emotional charge. The question from the platform finally gets its answer.",
+    sample: "Cue 1 motif, re-orchestrated full-band",
+    culture: "Circular form: the cold opening returns transformed. The talking drum's first question is resolved — he belongs to both worlds.",
+  },
+];
+
+const BPM_MIN = 70, BPM_MAX = 124;
+
+// temperature → color along an indigo→teal→gold→ember ramp
+function tempColor(t) {
+  const stops = [
+    [0.0, [22, 30, 52]],   // indigo
+    [0.3, [62, 92, 107]],  // cold teal
+    [0.5, [120, 140, 90]], // shifting
+    [0.65, [201, 162, 39]],// gold
+    [0.85, [200, 90, 40]], // ember
+    [1.0, [180, 40, 28]],  // deep red
+  ];
+  let a = stops[0], b = stops[stops.length - 1];
+  for (let i = 0; i < stops.length - 1; i++) {
+    if (t >= stops[i][0] && t <= stops[i + 1][0]) { a = stops[i]; b = stops[i + 1]; break; }
+  }
+  const span = b[0] - a[0] || 1;
+  const f = (t - a[0]) / span;
+  const c = a[1].map((v, i) => Math.round(v + (b[1][i] - v) * f));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+function RiteOfPassageRoadmap() {
+  const [open, setOpen] = React.useState(null);
+  const [actFilter, setActFilter] = React.useState("ALL");
+
+  const visible = React.useMemo(
+    () => CUES.filter((c) => actFilter === "ALL" || c.act === actFilter),
+    [actFilter]
+  );
+
+  return (
+    <div style={S.root}>
+      <style>{CSS}</style>
+
+      {/* HERO */}
+      <header style={S.hero}>
+        <div style={S.eyebrow}>AFROBEAT SCORE · CUE ROADMAP · VERSION I</div>
+        <h1 style={S.h1}>
+          Rite of <span style={S.h1accent}>Passage</span>
+        </h1>
+        <p style={S.tagline}>
+          Sixteen cues. One man crossing from a cold London platform to
+          ancestral fire. The colors below are <em>emotional temperature</em> —
+          indigo is exile, ember is belonging. The ribbon on the left rises and
+          falls with tempo.
+        </p>
+
+        <div style={S.legendRow}>
+          <TempScale />
+          <div style={S.filterGroup}>
+            {["ALL", "I", "II", "III"].map((a) => (
+              <button
+                key={a}
+                onClick={() => setActFilter(a)}
+                className="actBtn"
+                style={{
+                  ...S.actBtn,
+                  ...(actFilter === a ? S.actBtnOn : {}),
+                  borderColor: a === "ALL" ? "#7a7a82" : ACTS[a].tint,
+                }}
+              >
+                {a === "ALL" ? "All Acts" : `Act ${a}`}
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      {/* TIMELINE */}
+      <main style={S.timeline}>
+        {visible.map((c, i) => {
+          const isOpen = open === c.n;
+          const accent = tempColor(c.temp);
+          const heightPct = ((c.bpm - BPM_MIN) / (BPM_MAX - BPM_MIN)) * 100;
+          const prevAct = i > 0 ? visible[i - 1].act : null;
+          const showActHeader = c.act !== prevAct;
+
+          return (
+            <React.Fragment key={c.n}>
+              {showActHeader && (
+                <div style={{ ...S.actHeader, color: ACTS[c.act].tint }}>
+                  <span style={{ ...S.actDot, background: ACTS[c.act].tint }} />
+                  {ACTS[c.act].label}
+                </div>
+              )}
+
+              <article
+                className="cueCard"
+                style={{ ...S.card, borderLeft: `3px solid ${accent}` }}
+              >
+                {/* tempo ribbon */}
+                <div style={S.ribbonCol} title={`${c.bpm} BPM`}>
+                  <div style={S.ribbonTrack}>
+                    <div
+                      style={{
+                        ...S.ribbonFill,
+                        height: `${heightPct}%`,
+                        background: accent,
+                      }}
+                    />
+                  </div>
+                  <div style={S.bpmLabel}>{c.bpm}</div>
+                  <div style={S.bpmUnit}>BPM</div>
+                </div>
+
+                {/* header (tap target) */}
+                <button
+                  className="cueHead"
+                  onClick={() => setOpen(isOpen ? null : c.n)}
+                  style={S.cueHead}
+                  aria-expanded={isOpen}
+                >
+                  <div style={S.cueNo} >
+                    <span style={{ color: accent }}>{String(c.n).padStart(2, "0")}</span>
+                  </div>
+                  <div style={S.cueHeadMain}>
+                    <h3 style={S.cueTitle}>{c.title}</h3>
+                    <p style={S.cueMoment}>{c.moment}</p>
+                    <div style={S.swatchRow}>
+                      {c.palette.map((p, k) => (
+                        <span key={k} style={{ ...S.swatch, background: p }} />
+                      ))}
+                      <span style={S.metaPill}>{c.dur}</span>
+                    </div>
+                  </div>
+                  <div style={{ ...S.chev, transform: isOpen ? "rotate(90deg)" : "none", color: accent }}>
+                    ▸
+                  </div>
+                </button>
+
+                {/* expanded body */}
+                {isOpen && (
+                  <div className="cueBody" style={S.body}>
+                    <Section label="The feeling" accent={accent}>
+                      {c.feel}
+                    </Section>
+                    <Section label="Artistic direction" accent={accent}>
+                      {c.direction}
+                    </Section>
+                    <div className="grid2" style={S.grid2}>
+                      <div>
+                        <div style={{ ...S.miniLabel, color: accent }}>Instrumentation</div>
+                        <ul style={S.instList}>
+                          {c.instruments.map((ins, k) => (
+                            <li key={k} style={S.instItem}>{ins}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <div style={{ ...S.miniLabel, color: accent }}>Reference / sample</div>
+                        <div style={S.sampleBox}>{c.sample}</div>
+                        <div style={{ ...S.miniLabel, color: accent, marginTop: 14 }}>
+                          Culture & impact
+                        </div>
+                        <p style={S.culture}>{c.culture}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </article>
+            </React.Fragment>
+          );
+        })}
+      </main>
+
+      <footer style={S.footer}>
+        <div style={S.footRule} />
+        <p style={S.footText}>
+          The score evolves exactly as Akah does — visitor, to survivor, to a man
+          who belongs in both worlds.
+        </p>
+      </footer>
+    </div>
+  );
+}
+
+function Section({ label, accent, children }) {
+  return (
+    <div style={S.section}>
+      <div style={{ ...S.miniLabel, color: accent }}>{label}</div>
+      <p style={S.sectionText}>{children}</p>
+    </div>
+  );
+}
+
+function TempScale() {
+  return (
+    <div style={S.scaleWrap}>
+      <span style={S.scaleEnd}>Exile</span>
+      <div style={S.scaleBar} />
+      <span style={S.scaleEnd}>Belonging</span>
+    </div>
+  );
+}
+
+// ── styles ──────────────────────────────────────────────────
+const S = {
+  root: {
+    minHeight: "100vh",
+    background:
+      "radial-gradient(120% 80% at 50% -10%, #1d2742 0%, #0d1018 55%, #08090d 100%)",
+    color: "#E8E4DA",
+    fontFamily: "'Inter','Segoe UI',system-ui,sans-serif",
+    padding: "0 0 60px",
+  },
+  hero: { maxWidth: 860, margin: "0 auto", padding: "64px 24px 28px" },
+  eyebrow: {
+    fontSize: 11, letterSpacing: "0.32em", color: "#8C97B5",
+    fontWeight: 600, marginBottom: 18,
+  },
+  h1: {
+    fontFamily: "'Georgia','Times New Roman',serif",
+    fontSize: "clamp(48px,9vw,88px)", lineHeight: 0.95, margin: 0,
+    fontWeight: 700, letterSpacing: "-0.02em", color: "#F3EFE5",
+  },
+  h1accent: {
+    fontStyle: "italic", fontWeight: 400,
+    background: "linear-gradient(90deg,#E8632B,#E8A23A)",
+    WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+  },
+  tagline: {
+    fontSize: 16, lineHeight: 1.65, color: "#B8B4AC",
+    maxWidth: 620, marginTop: 22,
+  },
+  legendRow: {
+    display: "flex", flexWrap: "wrap", gap: 18, alignItems: "center",
+    justifyContent: "space-between", marginTop: 30,
+  },
+  scaleWrap: { display: "flex", alignItems: "center", gap: 10 },
+  scaleEnd: { fontSize: 11, letterSpacing: "0.12em", color: "#9A96A8", textTransform: "uppercase" },
+  scaleBar: {
+    width: 180, height: 8, borderRadius: 6,
+    background:
+      "linear-gradient(90deg,rgb(22,30,52),rgb(62,92,107),rgb(120,140,90),rgb(201,162,39),rgb(200,90,40),rgb(180,40,28))",
+  },
+  filterGroup: { display: "flex", gap: 8 },
+  actBtn: {
+    background: "transparent", color: "#CFCBC2",
+    border: "1px solid #555", borderRadius: 20,
+    padding: "7px 15px", fontSize: 12, fontWeight: 600,
+    letterSpacing: "0.04em", cursor: "pointer", transition: "all .18s",
+  },
+  actBtnOn: { background: "rgba(255,255,255,0.08)", color: "#fff" },
+
+  timeline: { maxWidth: 860, margin: "0 auto", padding: "10px 16px 0" },
+
+  actHeader: {
+    display: "flex", alignItems: "center", gap: 10,
+    fontSize: 12, fontWeight: 700, letterSpacing: "0.14em",
+    textTransform: "uppercase", margin: "34px 0 14px 4px",
+  },
+  actDot: { width: 8, height: 8, borderRadius: "50%" },
+
+  card: {
+    background: "rgba(255,255,255,0.028)",
+    borderRadius: 14, marginBottom: 12,
+    display: "flex", overflow: "hidden",
+    border: "1px solid rgba(255,255,255,0.06)",
+    backdropFilter: "blur(2px)",
+  },
+  ribbonCol: {
+    width: 58, flexShrink: 0, padding: "16px 0 12px",
+    display: "flex", flexDirection: "column", alignItems: "center",
+    borderRight: "1px solid rgba(255,255,255,0.05)",
+  },
+  ribbonTrack: {
+    width: 6, flex: 1, minHeight: 46, borderRadius: 6,
+    background: "rgba(255,255,255,0.07)",
+    display: "flex", alignItems: "flex-end", overflow: "hidden",
+  },
+  ribbonFill: { width: "100%", borderRadius: 6, transition: "height .3s" },
+  bpmLabel: { fontSize: 14, fontWeight: 700, marginTop: 8, color: "#E8E4DA" },
+  bpmUnit: { fontSize: 8.5, letterSpacing: "0.18em", color: "#79747F" },
+
+  cueHead: {
+    flex: 1, display: "flex", alignItems: "flex-start", gap: 14,
+    padding: "16px 16px 16px 14px", background: "transparent",
+    border: "none", cursor: "pointer", textAlign: "left", color: "inherit",
+  },
+  cueNo: {
+    fontFamily: "'Georgia',serif", fontSize: 26, fontWeight: 700,
+    lineHeight: 1, paddingTop: 2, width: 30, flexShrink: 0,
+  },
+  cueHeadMain: { flex: 1, minWidth: 0 },
+  cueTitle: {
+    margin: 0, fontSize: 19, fontWeight: 700, letterSpacing: "-0.01em",
+    color: "#F3EFE5",
+  },
+  cueMoment: { margin: "4px 0 0", fontSize: 13.5, color: "#A9A59D", lineHeight: 1.5 },
+  swatchRow: { display: "flex", alignItems: "center", gap: 6, marginTop: 11 },
+  swatch: { width: 22, height: 14, borderRadius: 3, boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.12)" },
+  metaPill: {
+    marginLeft: 4, fontSize: 11, letterSpacing: "0.06em",
+    color: "#cdc8be", background: "rgba(255,255,255,0.07)",
+    padding: "3px 9px", borderRadius: 20,
+  },
+  chev: { fontSize: 18, transition: "transform .22s", paddingTop: 4, flexShrink: 0 },
+
+  body: {
+    padding: "2px 22px 24px 60px", animation: "fade .25s ease",
+  },
+  section: { marginBottom: 16 },
+  miniLabel: {
+    fontSize: 10.5, fontWeight: 700, letterSpacing: "0.18em",
+    textTransform: "uppercase", marginBottom: 6,
+  },
+  sectionText: { margin: 0, fontSize: 14.5, lineHeight: 1.62, color: "#D2CEC5" },
+  grid2: {
+    display: "grid", gridTemplateColumns: "1fr 1fr", gap: 26,
+    marginTop: 6,
+  },
+  instList: { margin: 0, padding: 0, listStyle: "none" },
+  instItem: {
+    fontSize: 13.5, color: "#CFCBC2", padding: "5px 0",
+    borderBottom: "1px solid rgba(255,255,255,0.05)",
+  },
+  sampleBox: {
+    fontSize: 13.5, lineHeight: 1.5, color: "#E8E4DA",
+    background: "rgba(255,255,255,0.05)", borderRadius: 8,
+    padding: "10px 12px", fontStyle: "italic",
+  },
+  culture: { margin: "6px 0 0", fontSize: 13.5, lineHeight: 1.58, color: "#B6B2AA" },
+
+  footer: { maxWidth: 860, margin: "40px auto 0", padding: "0 24px" },
+  footRule: {
+    height: 1,
+    background: "linear-gradient(90deg,transparent,#E8632B,transparent)",
+    marginBottom: 18,
+  },
+  footText: {
+    textAlign: "center", fontFamily: "'Georgia',serif", fontStyle: "italic",
+    fontSize: 16, color: "#C9C5BC", lineHeight: 1.6,
+  },
+};
+
+const CSS = `
+  @keyframes fade { from { opacity:0; transform:translateY(-4px);} to {opacity:1;transform:none;} }
+  .cueCard { transition: background .2s, transform .2s; }
+  .cueCard:hover { background: rgba(255,255,255,0.05) !important; }
+  .cueHead:focus-visible { outline: 2px solid #E8A23A; outline-offset: -2px; border-radius: 8px; }
+  .actBtn:hover { background: rgba(255,255,255,0.06); }
+  @media (max-width: 600px) {
+    .cueBody { padding-left: 18px !important; padding-right: 16px !important; }
+    .grid2 { grid-template-columns: 1fr !important; gap: 18px !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+`;
+
+
+const _root = ReactDOM.createRoot(document.getElementById("root"));
+_root.render(<RiteOfPassageRoadmap />);
+</script>
+</body>
+</html>
